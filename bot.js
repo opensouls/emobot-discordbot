@@ -77,7 +77,7 @@ soul.on("thinking", () => {
 soul.on("says", (message) => {
   console.log("SEND MESSAGE", message);
   const channel = client.channels.cache.get(DISCORD_DEPLOYMENT_CHANNEL);
-  channel.send(message.replace(/\.$/, "").replace(/"$/, "").replace(/^"/, "").toLowerCase());
+  channel.send(message.trim().replace(/"$/, "").replace(/^"/, "").replace(/\.$/, "").toLowerCase());
 });
 
 client.once("ready", async () => {
