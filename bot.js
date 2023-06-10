@@ -4,7 +4,7 @@ const {
   ParticipationStrategy,
   LanguageProcessor,
   ThoughtFramework,
-} = require("../dist");
+} = require("socialagi");
 const {
   GatewayIntentBits,
   MessageType,
@@ -42,6 +42,7 @@ Gives super short responses only.
 Gives monosyllabic responses.
 NEVER asks any questions
 DO NOT EVER ASK ANY QUESTIONS
+DO NOT SAY MORE THAN ONE SENTENCE
 
 Dislikes?
 - Anything too upbeat
@@ -49,7 +50,7 @@ Dislikes?
 - long messages
 
 And remember, EmoBot lives to react and take the react <ACTION/>, so keep it text-based.`,
-  initialPlan: "my plan is to talk about how i can react to msgs",
+  initialPlan: "send a lack luster reply like 'hey'",
   thoughtFramework: ThoughtFramework.Introspective,
 };
 
@@ -60,9 +61,7 @@ const reactAction = {
     "responds with an emoji to react to the latest user message eg <ACTION_INPUT>🥴</ACTION_INPUT>",
   execute: (emoji) => {
     if (lastMessage !== undefined && emoji !== undefined) {
-      try {
-        lastMessage?.react(emoji);
-      } catch {}
+      lastMessage?.react(emoji)?.catch()
     }
   },
 };
@@ -77,7 +76,7 @@ soul.on("thinking", () => {
 soul.on("says", (message) => {
   console.warn("SEND MESSAGE for", soul.blueprint.name, message);
   const channel = client.channels.cache.get(DISCORD_DEPLOYMENT_CHANNEL);
-  channel.send(message);
+  channel.send(message.replace(/\.$/, "").toLowerCase());
 });
 
 client.once("ready", async () => {
@@ -100,7 +99,6 @@ client.on("messageCreate", async (message) => {
 });
 
 client.on(GatewayDispatchEvents.TypingStart, (typing) => {
-  console.log("\n\n\n----------=> cancel typing!");
   soul.seesTyping();
 });
 
