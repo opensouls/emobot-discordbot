@@ -1,10 +1,8 @@
 # EmoBot
 
-This discord repo provides everything you need to create your own EmoBotAGI discord bot - the same as from http://meetsamantha.ai
+This discord repo provides everything you need to create your own EmoBot discord bot - EmoBot is a tech demo that shows how Actions can be used from the SocialAGI project to allow a soul to take action, with the specific action here taken being react with various emojis to messages.
 
-EmoBot uses the [SocialAGI](https://github.com/opensouls/SocialAGI) library to create her digital soul through just a few commands.
-
-The [SocialAGI](https://github.com/opensouls/SocialAGI) library gives EmoBot a basic introspective thought process on every message to make her feel more alive and agentic in dialog.
+Under the hood, EmoBot uses the [SocialAGI](https://github.com/opensouls/SocialAGI) library to create its digital soul through just a few commands.
 
 ## Discord integration tutorial
 
@@ -19,17 +17,17 @@ Second, create a new discord application at https://discord.com/developers/appli
 You'll need a few environment variables to run the bot
 
 ```
-export DISCORD_TOKEN_SAMANTHA=...
+export DISCORD_TOKEN_EMOBOT=...
 ```
 
 You can find your discord application's API token here:
 
-<img width="1386" alt="Screen Shot 2023-05-29 at 10 28 52 PM" src="https://github.com/opensouls/samantha-discordbot/assets/8204988/43a517af-4e0d-429c-8ae9-029fee4c11d1">
+<img width="1391" alt="Screen Shot 2023-06-10 at 5 28 42 PM" src="https://github.com/opensouls/emobot-discordbot/assets/8204988/5c0e1ebe-f5de-4145-8af6-c7d9a75d50c7">
 
 Next, you'll need to decide which channel you're going to deploy the bot to in your server
 
 ```
-export DISCORD_DEPLOYMENT_CHANNEL=...
+export DISCORD_DEPLOYMENT_CHANNEL_EMOBOT=...
 ```
 
 You can find the `channelID` by visiting your target discord server/channel inside the web browser
@@ -46,7 +44,7 @@ At the bottom of this page you'll get a URL
 
 Copy this url and then add your new application's bot to your target server
 
-<img width="405" alt="Screen Shot 2023-05-29 at 10 50 33 PM" src="https://github.com/opensouls/samantha-discordbot/assets/8204988/0e677da2-f81f-462e-a855-fc54ac2eb450">
+<img width="402" alt="Screen Shot 2023-06-10 at 5 30 32 PM" src="https://github.com/opensouls/emobot-discordbot/assets/8204988/510d6cea-ba5f-4883-827d-ceea5ae59dc9">
 
 ## Running the discord bot server locally
 
@@ -64,7 +62,7 @@ node bot.js
 
 Now, your bot should be in your server running and you should be able to talk to EmoBot.
 
-<img width="723" alt="image" src="https://github.com/opensouls/samantha-discordbot/assets/8204988/d3d606b7-c30a-4260-adb4-e6cc78063508">
+<img width="435" alt="Screen Shot 2023-06-10 at 5 31 31 PM" src="https://github.com/opensouls/emobot-discordbot/assets/8204988/87559f2d-5d68-4e76-8d0f-5ae557ca5e29">
 
 ### Running the discord bot server on heroku
 
@@ -90,7 +88,7 @@ git push heroku main
 
 Now that the bot is deployed, you'll have to configure Heroku. First, go to settings and add the appropriate env
 
-<img width="817" alt="Screen Shot 2023-05-29 at 10 40 26 PM" src="https://github.com/opensouls/samantha-discordbot/assets/8204988/624e1fdb-af64-4ef9-bf3b-e49ecebd667a">
+<img width="1391" alt="Screen Shot 2023-06-10 at 5 28 42 PM" src="https://github.com/opensouls/emobot-discordbot/assets/8204988/92de6369-4748-43f7-9ae2-50f3369619c8">
 
 Lastly, adjust the resources to run the bot. Your resources should look like this:
 
@@ -102,4 +100,5 @@ That's it! Now you should be able to talk to EmoBot running from your Heroku ins
 
 Now, your bot should be in your server running and you should be able to talk to EmoBot.
 
-<img width="723" alt="image" src="https://github.com/opensouls/samantha-discordbot/assets/8204988/d3d606b7-c30a-4260-adb4-e6cc78063508">
+<img width="434" alt="Screen Shot 2023-06-10 at 5 25 13 PM" src="https://github.com/opensouls/emobot-discordbot/assets/8204988/fe5b2b5b-e665-44b6-ac41-20ed87119c4b">
+
