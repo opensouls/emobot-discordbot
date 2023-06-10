@@ -74,9 +74,9 @@ soul.on("thinking", () => {
 });
 
 soul.on("says", (message) => {
-  console.warn("SEND MESSAGE for", soul.blueprint.name, message);
+  console.log("SEND MESSAGE", message);
   const channel = client.channels.cache.get(DISCORD_DEPLOYMENT_CHANNEL);
-  channel.send(message.replace(/\.$/, "").toLowerCase());
+  channel.send(message.replace(/\.$/, "").replace(/"$/, "").replace(/^"/, "").toLowerCase());
 });
 
 client.once("ready", async () => {
