@@ -4,6 +4,8 @@ This discord repo provides everything you need to create your own EmoBot discord
 
 EmoBot is a tech demo that shows how Actions can be used from the [SocialAGI](https://github.com/opensouls/SocialAGI) project to allow a soul to take action, with the specific action here taken being react with various emojis to messages.
 
+Live demo at [socialagi.dev](http://socialagi.dev)
+
 Under the hood, EmoBot uses the [SocialAGI](https://github.com/opensouls/SocialAGI) library to create its digital soul through just a few commands.
 
 ## Discord integration tutorial
