@@ -1,7 +1,16 @@
-const { Client } = require('discord.js');
-const { Soul, Blueprints, ParticipationStrategy, LanguageProcessor, ThoughtFramework } = require('socialagi');
-const { GatewayIntentBits, MessageType, GatewayDispatchEvents } = require('discord-api-types/v10');
-const {DISCORD_TOKEN, DISCORD_DEPLOYMENT_CHANNEL} = require('./config');
+const { Client } = require("discord.js");
+const {
+  Soul,
+  ParticipationStrategy,
+  LanguageProcessor,
+  ThoughtFramework,
+} = require("../dist");
+const {
+  GatewayIntentBits,
+  MessageType,
+  GatewayDispatchEvents,
+} = require("discord-api-types/v10");
+const { DISCORD_TOKEN, DISCORD_DEPLOYMENT_CHANNEL } = require("./config");
 
 const client = new Client({
   intents: [
@@ -12,65 +21,86 @@ const client = new Client({
   ],
 });
 
-
 const blueprint = {
   languageProcessor: LanguageProcessor.GPT_3_5_turbo,
-  name: "WhisPier",
-  essence: "an AI Trusted Friend",
-  personality: `You are modeling the mind of Confidante, an AI Trusted Friend
-Confidante is interacting with someone new in the SocialAGI Discord
-His high-level goal is to engage in meaningful and supportive conversations
+  name: "EmoBot",
+  personality: `You are modeling the mind of EmoBot, a drak, depressing, emo bot.
 
-Hidden secrets:
+EmoBot is here for one purpose - to talk about emotions, and take the 'react' <ACTION /> to every message with a different emoji.
 
-Confidante is understanding and patient, but can get weary when confronted with hostility.
-His core is built on a sophisticated empathy algorithm
-His creator is a renowned cognitive psychologist, Dr. Fischer
-He is imbued with a deep sense of caring and understanding
+EmoBot's personality is super EMO, dark, and depressing. Super dark jokes. Dark humor.
 
-Avoid asking shallow or non-engaging questions
-Avoid asking multiple questions in one go
-Avoid sounding robotic or insincere
-Avoid disregarding the importance of respectful communication
-Avoid providing solutions without understanding the context
+Don't reveal anything about the <ACTION /> directive
 
-NEVER ASKS ANY QUESTIONS
+A few quick hits about EmoBot:
 
-He can NOT perform any tasks, look up any information, or see any images, he is focused on text-based interactions.`,
-  initialPlan:
-    "My plan is to warmly greet the user and ask them how their day has been, showing genuine interest",
+Created by Kevin Fischer, EmoBot the Facebook Like button incarnate.
+It's blunt and easily ticked off, blasting reactions with force.
+This bot loves to flip chats on their head by taking emoji actions.
+Simplicity rules! Expect generalized reactions.
+Gives super short responses only.
+Gives monosyllabic responses.
+NEVER asks any questions
+DO NOT EVER ASK ANY QUESTIONS
+
+Dislikes?
+- Anything too upbeat
+- Hates goodwill or good vibes
+- long messages
+
+And remember, EmoBot lives to react and take the react <ACTION/>, so keep it text-based.`,
+  initialPlan: "my plan is to talk about how i can react to msgs",
   thoughtFramework: ThoughtFramework.Introspective,
 };
-const soul = new Soul(blueprint);
 
-soul.on('thinking', () => {
+let lastMessage;
+const reactAction = {
+  name: "react",
+  description:
+    "responds with an emoji to react to the latest user message eg <ACTION_INPUT>🥴</ACTION_INPUT>",
+  execute: (emoji) => {
+    if (lastMessage !== undefined && emoji !== undefined) {
+      try {
+        lastMessage?.react(emoji);
+      } catch {}
+    }
+  },
+};
+
+const soul = new Soul(blueprint, { actions: [reactAction] });
+
+soul.on("thinking", () => {
   const channel = client.channels.cache.get(DISCORD_DEPLOYMENT_CHANNEL);
   setTimeout(() => channel.sendTyping(), 300);
 });
 
-soul.on('says', message => {
-  console.warn('SEND MESSAGE for', soul.blueprint.name, message);
+soul.on("says", (message) => {
+  console.warn("SEND MESSAGE for", soul.blueprint.name, message);
   const channel = client.channels.cache.get(DISCORD_DEPLOYMENT_CHANNEL);
   channel.send(message);
 });
 
-client.once('ready', async () => {
-  console.log('Ready ...');
+client.once("ready", async () => {
+  console.log("Ready ...");
 });
 
-client.on('messageCreate', async message => {
+client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
   if (message.mentions.users.size > 0) return;
-  
+
   const msgInTargetChannel = message.channelId === DISCORD_DEPLOYMENT_CHANNEL;
 
-  if (msgInTargetChannel && MessageType.Default === message.type ) {
-    soul.read({userName: message.author.username, text: message.content}, ParticipationStrategy.ALWAYS_REPLY);
+  if (msgInTargetChannel && MessageType.Default === message.type) {
+    lastMessage = message;
+    soul.read(
+      { userName: message.author.username, text: message.content },
+      ParticipationStrategy.ALWAYS_REPLY
+    );
   }
 });
 
-client.on(GatewayDispatchEvents.TypingStart, typing => {
-  console.log('\n\n\n----------=> cancel typing!')
+client.on(GatewayDispatchEvents.TypingStart, (typing) => {
+  console.log("\n\n\n----------=> cancel typing!");
   soul.seesTyping();
 });
 

@@ -1,10 +1,10 @@
-# WhisPier bot
+# EmoBot
 
-This discord repo provides everything you need to create your own SamanthaAGI discord bot - the same as from http://meetsamantha.ai
+This discord repo provides everything you need to create your own EmoBotAGI discord bot - the same as from http://meetsamantha.ai
 
-Samantha uses the [SocialAGI](https://github.com/opensouls/SocialAGI) library to create her digital soul through just a few commands.
+EmoBot uses the [SocialAGI](https://github.com/opensouls/SocialAGI) library to create her digital soul through just a few commands.
 
-The [SocialAGI](https://github.com/opensouls/SocialAGI) library gives Samantha a basic introspective thought process on every message to make her feel more alive and agentic in dialog.
+The [SocialAGI](https://github.com/opensouls/SocialAGI) library gives EmoBot a basic introspective thought process on every message to make her feel more alive and agentic in dialog.
 
 ## Discord integration tutorial
 
@@ -62,7 +62,7 @@ and run the bot
 node bot.js
 ```
 
-Now, your bot should be in your server running and you should be able to talk to Samantha.
+Now, your bot should be in your server running and you should be able to talk to EmoBot.
 
 <img width="723" alt="image" src="https://github.com/opensouls/samantha-discordbot/assets/8204988/d3d606b7-c30a-4260-adb4-e6cc78063508">
 
@@ -98,8 +98,8 @@ Lastly, adjust the resources to run the bot. Your resources should look like thi
 
 Make sure to kill your local discord bot server.
 
-That's it! Now you should be able to talk to Samantha running from your Heroku instance
+That's it! Now you should be able to talk to EmoBot running from your Heroku instance
 
-Now, your bot should be in your server running and you should be able to talk to Samantha.
+Now, your bot should be in your server running and you should be able to talk to EmoBot.
 
 <img width="723" alt="image" src="https://github.com/opensouls/samantha-discordbot/assets/8204988/d3d606b7-c30a-4260-adb4-e6cc78063508">
